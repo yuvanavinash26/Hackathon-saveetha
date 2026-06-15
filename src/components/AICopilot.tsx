@@ -173,7 +173,7 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
       
       // Headers
       if (line.startsWith('### ')) {
-        return <h4 key={idx} className="text-sm font-bold text-cyan-300 mt-3 mb-1.5 font-mono uppercase">{line.replace('### ', '')}</h4>;
+        return <h4 key={idx} className="text-sm font-bold text-red-700 mt-3 mb-1.5 font-mono uppercase">{line.replace('### ', '')}</h4>;
       }
       
       // Strong text replacements
@@ -187,7 +187,7 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
         if (match.index > lastIndex) {
           parts.push(line.substring(lastIndex, match.index));
         }
-        parts.push(<strong key={match.index} className="text-white font-semibold">{match[1]}</strong>);
+        parts.push(<strong key={match.index} className="text-slate-900 font-bold">{match[1]}</strong>);
         lastIndex = boldRegex.lastIndex;
       }
       
@@ -199,20 +199,20 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
       if (line.startsWith('* ') || line.startsWith('- ')) {
         const remainingStr = line.substring(2);
         return (
-          <li key={idx} className="ml-4 list-disc text-slate-350 text-xs py-0.5">
+          <li key={idx} className="ml-4 list-disc text-slate-700 text-xs py-0.5">
             {parts.length > 0 ? parts : remainingStr}
           </li>
         );
       } else if (/^\d+\./.test(line)) {
         return (
-          <div key={idx} className="pl-2 text-slate-350 text-xs py-1 leading-relaxed">
+          <div key={idx} className="pl-2 text-slate-700 text-xs py-1 leading-relaxed">
             {parts.length > 0 ? parts : line}
           </div>
         );
       }
 
       return (
-        <p key={idx} className="text-slate-300 text-xs leading-relaxed mb-1.5 min-h-[1.2em]">
+        <p key={idx} className="text-slate-700 text-xs leading-relaxed mb-1.5 min-h-[1.2em]">
           {parts.length > 0 ? parts : line}
         </p>
       );
@@ -220,26 +220,26 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
   };
 
   return (
-    <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md shadow-xl flex flex-col h-[650px] relative">
+    <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-[650px] relative text-slate-800">
       
       {/* Bot Header */}
-      <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-4">
+      <div className="flex justify-between items-center border-b border-slate-100 pb-4 mb-4">
         <div className="flex items-center space-x-3">
-          <div className="bg-gradient-to-tr from-cyan-500 to-blue-600 p-2.5 rounded-xl text-slate-950">
+          <div className="bg-red-600 p-2.5 rounded-xl text-white">
             <Bot className="h-5 w-5 stroke-[2.5]" />
           </div>
           <div>
-            <h3 className="text-white font-bold text-base flex items-center space-x-1.5">
+            <h3 className="text-slate-900 font-bold text-base flex items-center space-x-1.5">
               <span>CARESYNC AI+ Copilot</span>
-              <Sparkles className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
+              <Sparkles className="h-3.5 w-3.5 text-red-600 animate-pulse" />
             </h3>
-            <p className="text-[10px] text-slate-400 font-mono">ON-CALL DECISION-SUPPORT TELEMETRY ENGINE</p>
+            <p className="text-[10px] text-slate-500 font-mono font-bold uppercase">ON-CALL DECISION-SUPPORT TELEMETRY ENGINE</p>
           </div>
         </div>
         
         <button 
           onClick={handleClear}
-          className="p-2 bg-slate-950/40 hover:bg-slate-950 text-slate-500 hover:text-red-400 rounded-lg border border-slate-800 transition-all"
+          className="p-2 bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-red-500 rounded-lg border border-slate-200 transition-all cursor-pointer"
           title="Clear Chat Logs"
         >
           <Trash2 className="h-4 w-4" />
@@ -248,14 +248,14 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
 
       {/* Quick Queries container */}
       <div className="mb-4">
-        <p className="text-[10px] text-slate-400 font-mono uppercase tracking-widest mb-2">QUICK SUGGESTED INQUIRIES</p>
+        <p className="text-[10px] text-slate-500 font-mono uppercase tracking-widest mb-2 font-bold">QUICK SUGGESTED INQUIRIES</p>
         <div className="flex flex-wrap gap-2">
           {quickQueries.map((item, id) => (
             <button
               key={id}
               id={`quick-chip-${id}`}
               onClick={() => handleSend(item.query)}
-              className="text-[10px] font-semibold bg-cyan-950/40 hover:bg-cyan-950/90 text-cyan-400 hover:text-cyan-300 border border-cyan-900/50 hover:border-cyan-500/40 px-3 py-1.5 rounded-lg transition-all"
+              className="text-[10px] font-bold bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 px-3 py-1.5 rounded-lg transition-all cursor-pointer"
             >
               {item.label}
             </button>
@@ -264,23 +264,23 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
       </div>
 
       {/* Messages Logs Area */}
-      <div className="flex-1 overflow-y-auto space-y-4 pr-2 mb-4 bg-slate-950/40 border border-slate-850 p-4 rounded-xl">
+      <div className="flex-1 overflow-y-auto space-y-4 pr-2 mb-4 bg-slate-50 border border-slate-200 p-4 rounded-xl">
         {messages.map((msg) => (
           <div 
             key={msg.id} 
             className={`flex items-start space-x-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {msg.sender === 'assistant' && (
-              <div className="h-8 w-8 rounded-lg bg-cyan-950 border border-cyan-800/60 flex items-center justify-center text-cyan-400 shrink-0">
+              <div className="h-8 w-8 rounded-lg bg-red-100 border border-red-200 flex items-center justify-center text-red-600 shrink-0">
                 <Bot className="h-4 w-4" />
               </div>
             )}
             <div className={`p-4 rounded-2xl max-w-[85%] border text-xs leading-relaxed ${
               msg.sender === 'user' 
-                ? 'bg-gradient-to-r from-cyan-900/60 to-blue-900/40 border-cyan-800/45 text-white' 
-                : 'bg-slate-900/50 border-slate-800 text-slate-100 shadow-md'
+                ? 'bg-red-50 border-red-205 text-slate-900 shadow-xs' 
+                : 'bg-white border text-slate-800 border-slate-200 shadow-xs'
             }`}>
-              <div className="mb-1 text-[9px] font-mono text-slate-400 tracking-wider flex items-center space-x-1">
+              <div className="mb-1 text-[9px] font-mono text-slate-500 tracking-wider flex items-center space-x-1 font-bold">
                 <span>{msg.sender === 'user' ? 'PHYSICIAN / CO-PILOT' : 'CARESYNC AGENT'}</span>
                 <span>•</span>
                 <span>{msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
@@ -290,7 +290,7 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
               </div>
             </div>
             {msg.sender === 'user' && (
-              <div className="h-8 w-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 shrink-0">
+              <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-550 shrink-0">
                 <User className="h-4 w-4" />
               </div>
             )}
@@ -298,15 +298,15 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
         ))}
 
         {isTyping && (
-          <div className="flex items-center space-x-2 text-cyan-400">
-            <div className="h-8 w-8 rounded-lg bg-cyan-950/80 border border-cyan-800/30 flex items-center justify-center text-cyan-400">
+          <div className="flex items-center space-x-2 text-red-600">
+            <div className="h-8 w-8 rounded-lg bg-red-100 border border-red-200 flex items-center justify-center text-red-650">
               <Bot className="h-4 w-4 animate-bounce" />
             </div>
-            <div className="bg-slate-900/50 p-3 border border-slate-800 rounded-xl flex items-center space-x-1.5 text-[10px] font-mono select-none">
-              <span className="h-1.5 w-1.5 bg-cyan-400 rounded-full animate-bounce" />
-              <span className="h-1.5 w-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-              <span className="h-1.5 w-1.5 bg-cyan-400 rounded-full animate-bounce [animation-delay:0.4s]" />
-              <span className="text-slate-400 text-[9px] tracking-widest pl-1.5 uppercase">Computing clinical prognosis...</span>
+            <div className="bg-white p-3 border border-slate-200 rounded-xl flex items-center space-x-1.5 text-[10px] font-mono select-none shadow-xs">
+              <span className="h-1.5 w-1.5 bg-red-400 rounded-full animate-bounce" />
+              <span className="h-1.5 w-1.5 bg-red-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+              <span className="h-1.5 w-1.5 bg-red-400 rounded-full animate-bounce [animation-delay:0.4s]" />
+              <span className="text-slate-500 font-bold text-[9px] tracking-widest pl-1.5 uppercase">Computing clinical prognosis...</span>
             </div>
           </div>
         )}
@@ -324,11 +324,11 @@ Based on my telemetry database scanning of 20 active ICU patients, I can generat
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           placeholder="Ask AI Copilot about high-risk alerts, drug actions, or clinical codes..."
-          className="flex-1 bg-slate-950/80 hover:bg-slate-950 border border-slate-850 focus:border-cyan-500/80 p-3 rounded-xl text-slate-200 placeholder-slate-550 text-xs focus:outline-none transition-all"
+          className="flex-1 bg-slate-50 hover:bg-white border border-slate-200 focus:border-red-500/80 p-3 rounded-xl text-slate-800 placeholder-slate-450 text-xs focus:outline-none transition-all placeholder-slate-400"
         />
         <button
           type="submit"
-          className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 rounded-xl flex items-center justify-center transition-all shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_20px_rgba(6,182,212,0.35)]"
+          className="bg-red-600 hover:bg-red-700 text-white px-4 rounded-xl flex items-center justify-center transition-all shadow-xs cursor-pointer"
         >
           <Send className="h-4 w-4" />
         </button>

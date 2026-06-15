@@ -73,46 +73,46 @@ export default function Analytics({ patients, alerts, beds }: AnalyticsProps) {
   const averageRisk = Math.round(patients.reduce((sum, p) => sum + p.riskScore, 0) / patients.length);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-slate-800 animate-fade-in">
       {/* Analytics Summary Stats Banner */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
-          <div className="bg-red-950/50 border border-red-900 p-3 rounded-xl text-red-400">
+        <div className="bg-white border border-slate-200 p-5 rounded-2xl flex items-center space-x-4 shadow-xs">
+          <div className="bg-red-50 border border-red-200 p-3 rounded-xl text-red-500">
             <ShieldAlert className="h-6 w-6" />
           </div>
           <div>
-            <span className="block text-slate-400 text-xs uppercase font-mono">Mean Ward Risk</span>
-            <span className="text-2xl font-black font-mono text-white">{averageRisk}%</span>
+            <span className="block text-slate-500 text-xs font-bold uppercase font-mono">Mean Ward Risk</span>
+            <span className="text-2xl font-black font-mono text-slate-900">{averageRisk}%</span>
           </div>
         </div>
 
-        <div className="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
-          <div className="bg-cyan-950/50 border border-cyan-900 p-3 rounded-xl text-cyan-400">
+        <div className="bg-white border border-slate-200 p-5 rounded-2xl flex items-center space-x-4 shadow-xs">
+          <div className="bg-red-50 border border-red-100 p-3 rounded-xl text-red-600">
             <Activity className="h-6 w-6" />
           </div>
           <div>
-            <span className="block text-slate-400 text-xs uppercase font-mono">Mean Heart Rate</span>
-            <span className="text-2xl font-black font-mono text-white">{averageHeartRate} bpm</span>
+            <span className="block text-slate-500 text-xs font-bold uppercase font-mono">Mean Heart Rate</span>
+            <span className="text-2xl font-black font-mono text-slate-900">{averageHeartRate} bpm</span>
           </div>
         </div>
 
-        <div className="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
-          <div className="bg-emerald-950/50 border border-emerald-900 p-3 rounded-xl text-emerald-400">
+        <div className="bg-white border border-slate-200 p-5 rounded-2xl flex items-center space-x-4 shadow-xs">
+          <div className="bg-emerald-50 border border-emerald-100 p-3 rounded-xl text-emerald-600">
             <CheckCircle className="h-6 w-6" />
           </div>
           <div>
-            <span className="block text-slate-400 text-xs uppercase font-mono">Mean Ward SpO₂</span>
-            <span className="text-2xl font-black font-mono text-white">{averageSpO2}%</span>
+            <span className="block text-slate-500 text-xs font-bold uppercase font-mono">Mean Ward SpO₂</span>
+            <span className="text-2xl font-black font-mono text-slate-900">{averageSpO2}%</span>
           </div>
         </div>
 
-        <div className="bg-slate-900/60 border border-slate-800 p-5 rounded-2xl flex items-center space-x-4">
-          <div className="bg-yellow-950/50 border border-yellow-900 p-3 rounded-xl text-yellow-400">
+        <div className="bg-white border border-slate-200 p-5 rounded-2xl flex items-center space-x-4 shadow-xs">
+          <div className="bg-yellow-50 border border-yellow-105 p-3 rounded-xl text-yellow-650">
             <AlertCircle className="h-6 w-6" />
           </div>
           <div>
-            <span className="block text-slate-400 text-xs uppercase font-mono">System Alarms Logged</span>
-            <span className="text-2xl font-black font-mono text-white">{alerts.length} active</span>
+            <span className="block text-slate-500 text-xs font-bold uppercase font-mono">System Alarms Logged</span>
+            <span className="text-2xl font-black font-mono text-slate-900">{alerts.length} active</span>
           </div>
         </div>
       </div>
@@ -121,24 +121,24 @@ export default function Analytics({ patients, alerts, beds }: AnalyticsProps) {
       <div className="grid lg:grid-cols-2 gap-8">
         
         {/* Chart 1: Risk Distribution */}
-        <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md shadow-xl text-xs space-y-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-xs space-y-4 animate-fade-in">
           <div>
-            <h4 className="text-white font-bold text-base">Clinician Triage Risk Spread</h4>
-            <p className="text-slate-400 text-xs mt-0.5">Spread of active inpatient capacity grouped by visual hazard color levels</p>
+            <h4 className="text-slate-900 font-bold text-base">Clinician Triage Risk Spread</h4>
+            <p className="text-slate-500 text-xs mt-0.5">Spread of active inpatient capacity grouped by visual hazard color levels</p>
           </div>
           
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={riskDistData} margin={{ top: 20, right: 10, left: -20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#101b30" />
-                <XAxis dataKey="name" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#64748b" tick={{ fontSize: 10 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                <XAxis dataKey="name" stroke="#475569" tick={{ fontSize: 10 }} />
+                <YAxis stroke="#475569" tick={{ fontSize: 10 }} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#020617', borderColor: '#1e293b', borderRadius: '12px' }}
-                  itemStyle={{ fontSize: 11 }}
-                  labelStyle={{ fontSize: 10, color: '#22d3ee', fontWeight: 'bold' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px' }}
+                  itemStyle={{ fontSize: 11, color: '#1e293b' }}
+                  labelStyle={{ fontSize: 10, color: '#ef4444', fontWeight: 'bold' }}
                 />
-                <Bar dataKey="count" fill="#06b6d4" radius={[6, 6, 0, 0]}>
+                <Bar dataKey="count" fill="#ee4444" radius={[6, 6, 0, 0]}>
                   {riskDistData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
@@ -149,10 +149,10 @@ export default function Analytics({ patients, alerts, beds }: AnalyticsProps) {
         </div>
 
         {/* Chart 2: ICU Usage Timeline */}
-        <div className="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md shadow-xl text-xs space-y-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-xs space-y-4 animate-fade-in">
           <div>
-            <h4 className="text-white font-bold text-base">ICU Bed Occupancy Trends (Past 12 Hours)</h4>
-            <p className="text-slate-400 text-xs mt-0.5">Historic capacity metrics tracing occupied beds vs available backups</p>
+            <h4 className="text-slate-900 font-bold text-base">ICU Bed Occupancy Trends (Past 12 Hours)</h4>
+            <p className="text-slate-500 text-xs mt-0.5">Historic capacity metrics tracing occupied beds vs available backups</p>
           </div>
 
           <div className="h-64 w-full">
@@ -160,21 +160,21 @@ export default function Analytics({ patients, alerts, beds }: AnalyticsProps) {
               <AreaChart data={icuUsageData} margin={{ top: 20, right: 10, left: -25, bottom: 5 }}>
                 <defs>
                   <linearGradient id="colorOccupied" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.4}/>
+                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.2}/>
                     <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
                   </linearGradient>
                   <linearGradient id="colorAvailable" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
+                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.2}/>
                     <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#101b30" />
-                <XAxis dataKey="hour" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#64748b" tick={{ fontSize: 10 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                <XAxis dataKey="hour" stroke="#475569" tick={{ fontSize: 10 }} />
+                <YAxis stroke="#475569" tick={{ fontSize: 10 }} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#020617', borderColor: '#1e293b', borderRadius: '12px' }}
-                  itemStyle={{ fontSize: 11 }}
-                  labelStyle={{ fontSize: 10, color: '#22d3ee', fontWeight: 'bold' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px' }}
+                  itemStyle={{ fontSize: 11, color: '#1e293b' }}
+                  labelStyle={{ fontSize: 10, color: '#ef4444', fontWeight: 'bold' }}
                 />
                 <Legend wrapperStyle={{ fontSize: 10 }} />
                 <Area type="monotone" dataKey="Occupied" stroke="#ef4444" fillOpacity={1} fill="url(#colorOccupied)" strokeWidth={2} />
@@ -187,13 +187,13 @@ export default function Analytics({ patients, alerts, beds }: AnalyticsProps) {
       </div>
 
       {/* Second Charts Row */}
-      <div className="grid lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Chart 3: Alert Frequency distribution */}
-        <div className="lg:col-span-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md shadow-xl text-xs space-y-4">
+        <div className="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-xs space-y-4 animate-fade-in">
           <div>
-            <h4 className="text-white font-bold text-base">Alarm Frequency Distribution</h4>
-            <p className="text-slate-400 text-xs mt-0.5">Alert counts broken down by physiological telemetry risk categories</p>
+            <h4 className="text-slate-900 font-bold text-base">Alarm Frequency Distribution</h4>
+            <p className="text-slate-500 text-xs mt-0.5">Alert counts broken down by physiological telemetry risk categories</p>
           </div>
 
           <div className="h-52 w-full flex justify-center items-center">
@@ -216,44 +216,44 @@ export default function Analytics({ patients, alerts, beds }: AnalyticsProps) {
                     ))}
                   </Pie>
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#020617', borderColor: '#1e293b', borderRadius: '12px' }}
-                    itemStyle={{ fontSize: 10, color: '#fff' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px' }}
+                    itemStyle={{ fontSize: 10, color: '#10172a' }}
                   />
                 </PieChart>
               </ResponsiveContainer>
             )}
           </div>
 
-          <div className="space-y-1 text-[11px] pt-3 border-t border-slate-800/40">
+          <div className="space-y-1.5 text-[11px] pt-3 border-t border-slate-100">
             {alertFreqData.map((item, index) => (
-              <div key={index} className="flex justify-between items-center text-slate-350">
+              <div key={index} className="flex justify-between items-center text-slate-600">
                 <div className="flex items-center space-x-1.5">
                   <span className="h-2 w-2 rounded-full inline-block" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
                   <span>{item.name}</span>
                 </div>
-                <span className="font-mono font-bold text-white pr-2">{item.value} times</span>
+                <span className="font-mono font-bold text-slate-800 pr-2">{item.value} times</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Chart 4: Hospital Load Indexes */}
-        <div className="lg:col-span-8 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md shadow-xl text-xs space-y-4">
+        <div className="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-xs space-y-4 animate-fade-in">
           <div>
-            <h4 className="text-white font-bold text-base">Hospital Stress Index Tracking (7-day timeline)</h4>
-            <p className="text-slate-400 text-xs mt-0.5">Composite stress evaluation balancing patient acuity indexes against available ICU staffing densities</p>
+            <h4 className="text-slate-900 font-bold text-base">Hospital Stress Index Tracking (7-day timeline)</h4>
+            <p className="text-slate-500 text-xs mt-0.5">Composite stress evaluation balancing patient acuity indexes against available ICU staffing densities</p>
           </div>
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={hospitalLoadTrends} margin={{ top: 20, right: 10, left: -25, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#101b30" />
-                <XAxis dataKey="day" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#64748b" tick={{ fontSize: 10 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                <XAxis dataKey="day" stroke="#475569" tick={{ fontSize: 10 }} />
+                <YAxis stroke="#475569" tick={{ fontSize: 10 }} />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#020617', borderColor: '#1e293b', borderRadius: '12px' }}
-                  itemStyle={{ fontSize: 11 }}
-                  labelStyle={{ fontSize: 10, color: '#22d3ee', fontWeight: 'bold' }}
+                  contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px' }}
+                  itemStyle={{ fontSize: 11, color: '#1e293b' }}
+                  labelStyle={{ fontSize: 10, color: '#ef4444', fontWeight: 'bold' }}
                 />
                 <Legend wrapperStyle={{ fontSize: 10 }} />
                 <Line type="monotone" dataKey="StressIndex" name="Hospital Stress Score" stroke="#f59e0b" strokeWidth={3} activeDot={{ r: 6 }} />
