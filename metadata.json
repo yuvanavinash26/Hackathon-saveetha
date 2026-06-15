@@ -1,0 +1,6 @@
+{
+  "name": "CARESYNC AI+",
+  "description": "Critical Patient Monitoring and Response Intelligence System",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
